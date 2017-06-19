@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block content %}
+<h1>Welcome to Dom's Sandbox</h1>
+<nav>
+    <a href="/newblog">Write a New Blog</a>
+</nav>
+
+
+<h2>Previous Blogs</h2>
+{ % if blogs|length == 0 % }
+
+<p>No Entries</p>
+[ % else %]
+<ul>
+    {% for blog in blogs %}
+    <li>{{blog.title}}
+        <div>{{blog.body}}</div>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endif %} {% endblock %}
+
+</body>
+
+</html>
