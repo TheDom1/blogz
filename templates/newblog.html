@@ -1,0 +1,25 @@
+{% extends "base.html" %} 
+{% block content %}
+<h1>Welcome to Dom's Sandbox</h1>
+
+
+
+
+<form action="/newblog" method="post" id="blog_form">
+  <br>Blog Title:<br>
+<textarea rows="4" cols="50" name="blog_name" form="blog_form">
+Enter text here...</textarea>
+  <br>
+  Blog Body:<br>
+<br>
+<textarea rows="4" cols="50" name="blog_body" form="blog_form">
+Enter text here...</textarea>
+
+  <br>
+  <input type="submit" value="Submit">
+</form>
+
+
+{% endblock %}
+
+    
