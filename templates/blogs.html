@@ -1,24 +1,49 @@
 {% extends "base.html" %} 
 {% block content %}
-<h1>Welcome to Dom's Sandbox</h1>
-<nav>
-    <a href="/newblog">Write a New Blog</a>
-</nav>
+    {% if session['logged_in'] %}
+        <h1>Welcome to {{ user.username }} Sandbox</h1>
+
+        <nav>
+        <a href="/logout">Logout</a>
+        </nav>
+        <nav>
+        <a href="/newblog">New Blog Post</a>
+        </nav>
+    {% else %}
+        <h1>Welcome to the Sandbox</h1>
+        <nav>
+        <a href="/signup">Register</a>
+        <div>
+        <a href="/login">Login</a>
+        </div>
+        </nav>
+
+    {% endif %}
 
 
-<h2>Previous Blogs</h2>
-
-
-
-
-<ul>
+    {% if session['logged_in'] %}
+    <h2>My Previous Blogs</h2>
+    <ul>
     {% for blog in blogs %}
-    <li> <a href="/blog/{{ blog.id }}" />
-        {{blog.title}}
+    <li>
+
+        <a href="/blog/{{blog.id}}/">{{blog.name}}</a>
+        <p>Author:{{ session['username'] }}</p>
     </li>
     {% endfor %}
-</ul>
+        </ul>
+    {% endif %}
 
+    {% if not session["logged_in"] %}
+        <h2>Recent Blogs</h2>
+        <hr>
+    {% for blog in data_tuples %}
+
+    <a href="/blog/{{blog[1]}}/">{{blog[0]}}</a>
+    <p>Author:{{ blog[2] }}</p>
+
+    {% endfor %}
+    {% endif %}
 
 
 {% endblock %}

@@ -1,25 +1,39 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
+
 {% block content %}
-<h1>Welcome to Dom's Sandbox</h1>
+    {% if session['logged_in'] %}
 
 
 
+<h1>New Blog:</h1>
+    <form action="/newblog" method='post'>
+        <label>
+            New Blog Title:
+            <input id='blog_name' type='text' name='blog_name' />
+        </label> <div>
 
-<form action="/newblog" method="post" id="blog_form">
-  <br>Blog Title:<br>
-<textarea rows="4" cols="50" name="blog_name" form="blog_form">
-Enter text here...</textarea>
-  <br>
-  Blog Body:<br>
-<br>
-<textarea rows="4" cols="50" name="blog_body" form="blog_form">
-Enter text here...</textarea>
+    </div>
+        {% if title_error %}
+            <p class = "error">{{title_error}}</p>
+        {% endif %}
 
-  <br>
-  <input type="submit" value="Submit">
-</form>
+    <hr />
 
 
+        <label>
+            New Blog:
+            <textarea id='blog' name='blog' ></textarea>
+        </label>
+        {% if body_error %}
+            <p class = "error">{{body_error}}</p>
+        {% endif %}
+        <input type='submit' value='Finished' />
+    </form>
+    {% else %}
+        <a href="/login.html">Please Log In!</a>
+    {% endif %}
 {% endblock %}
 
+</body>
+</html>
     
